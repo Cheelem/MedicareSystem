@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="Stylesheet" type="text/css" href="css/app.css"/>
+<link id="style" href="css/clean.css" rel="stylesheet" media="screen">
+    <title>处方明细</title>
+</head>
+<body unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
+<section class="wrapper" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
+<h4 id="title"> 处方 </h4>
+    <h3 class="text-center pull-right" id="loadingText"><i class="fa fa-refresh"></i> 数据加载中</h3>
+ <h5 id="subtitle">新增处方明细。</h5>
+    <section class="panel panel-primary wrapper">
+	
+	<div class="row wrapper">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+	<label>收费项目类别</label>
+	<input class="form-control" id="chargeType" name="form-element"	type="text" value="" readonly="readonly" placeholder="请在下方选择一项收费类别"/>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+	<label>收费项目名称</label>
+	<input class="form-control" id="chargeName" name="form-element"	type="text" value="" readonly="readonly"/>
+
+		<input class="form-control" id="chargeID" name="form-element"	type="text" value="" readonly="readonly" style="display: none"/>
+
+	</div>
+	</div>
+<div class="wrapper">
+		<h5 id="tip"> 选择一项收费项目类别</h5>
+	<div class="row text-center wrapper-sm">
+
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+	<a class="btn btn-lg btn-primary" onclick="switchPanel('medicine')"><i class="fa fa-medkit"></i> 药品药剂</a>
+	</div>
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+	<a class="btn btn-lg btn-danger"  onclick="switchPanel('diagnosis')"><i class="fa fa-stethoscope"></i> 诊疗项目</a>
+	</div>
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+	<a class="btn btn-lg btn-warning" onclick="switchPanel('service')"><i class="fa fa-user-md"></i> 服务设施</a>
+	</div>
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			<a class="btn btn-lg btn-info" onclick="switchPanel('cost')"><i class="fa fa-tasks"></i> 直接键入</a>
+
+		</div>
+	</div>
+	
+	
+	
+	<section  id="panel-medicine" class="panel panel-default" style="display:none">
+ <header class="panel-heading">
+                    <i class="fa fa-medkit"></i> 药品 <small class="pull-right text-muted"> <i class="fa fa-info-circle"></i>  点击表格列头可按当前列排序查看，在右侧搜索框中输入关键字可搜索对象。
+					</small> 
+                  </header>
+                <div class="table-responsive wrapper-sm" >
+                    <div id="table1" style="overflow-x: auto;">
+                    </div>
+					
+              </div>
+			  
+            </section>
+			
+			    <section id="panel-diagnosis" class="panel panel-default" style="display:none">
+ <header class="panel-heading">
+                     <i class="fa fa-stethoscope"></i> 诊疗项目 <small class="pull-right text-muted"> <i class="fa fa-info-circle"></i>  点击表格列头可按当前列排序查看，在右侧搜索框中输入关键字可搜索对象。
+					</small> 
+                  </header>
+                <div class="table-responsive wrapper-sm" >
+                    <div id="table2" style="overflow-x: auto;">
+                    </div>
+              </div>
+            </section>
+
+			    <section id="panel-service" class="panel panel-default" style="display:none">
+ <header class="panel-heading">
+                     <i class="fa fa-user-md"></i> 服务设施 <small class="pull-right text-muted"> <i class="fa fa-info-circle"></i>  点击表格列头可按当前列排序查看，在右侧搜索框中输入关键字可搜索对象。
+					</small> 
+                  </header>
+                <div class="table-responsive wrapper-sm" >
+                    <div id="table3" style="overflow-x: auto;">
+                    </div>
+					
+              </div>
+            </section>
+
+
+
+	<section id="panel-cost" class="panel panel-default" style="display:none">
+		<header class="panel-heading">
+			<i class="fa fa-user-md"></i> 键入收录集外的收费项目 <small class="pull-right text-muted"> <i class="fa fa-info-circle"></i>  点击表格列头可按当前列排序查看，在右侧搜索框中输入关键字可搜索对象。
+		</small>
+		</header>
+		<div class="wrapper-sm">
+			<div class="alert-warning wrapper">
+				<h4><i class="fa fa-exclamation-triangle"></i>您正在输入自定义的医疗收费项目</h4>
+				<p>直接输入项目名称，都视为全额自费，不论项目名称是否在可报销的项目目录中。
+				</p>
+			</div>
+			<div class="wrapper"><label>收费项目名称</label>
+				<div class="row">
+				<div class="col-8 col-xs-8">
+
+
+				<input id="cosChargeName"  class="form-control" value="" placeholder=""/></div>
+				<div class="col-4 col-xs-4">
+				<a class="btn btn-danger" onclick="saveCosChargeName()">确定</a></div>
+			</div>
+		</div>
+		</div>
+	</section>
+			</div>
+				
+			<div class="row wrapper">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+	<label>单价</label>
+	<input class="form-control" id="unitPrice" name="form-element"	type="text" value="" placeholder="输入处方项目单价"/>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+	<label>数量</label>
+	<input class="form-control" id="quantity" name="form-element" placeholder="输入数量" type="text" value=""/>
+	</div>
+	</div><div class="row wrapper">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+	<label>总金额</label>
+	<input class="form-control" id="amountOfMoney" name="form-element"	type="text" value="" placeholder="输入金额" readonly="readonly"/>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+	<label>是否在录药品</label>
+	<input class="form-control" id="isOfficial" name="form-element"	type="text" value="是" readonly="readonly"/>
+	</div>
+	</div>
+		<a class="btn btn-lg btn-primary" id="btnFormSubmit" onclick="submitFrom()">
+			<i class="fa fa-save"></i> 创建</a>
+
+	</section>
+		<input id="recordID"  name="form-element" type="text" value="" style="display:none"/>
+					
+					<input id="className" type="text" value="prescription" style="display:none"/>
+	<input id="formMode" type="text" value="create" style="display:none"/>
+
+</section>
+<script src="js/app.js"></script>
+<script src="js/jquery.js"></script>
+    <script src="plugins/gotopage.js"></script>
+    <script src="plugins/ajaxpaging.js"></script>
+    <script src="js/jquery.columns.min.js"></script>
+<script>
+
+
+
+function onEditObject(id){
+app.editObject($("#className").val(),id);
+}
+
+function onDeleteObject(id){
+app.deleteObject($("#className").val(),id);
+}
+
+  //loadTable("[{\"药品ID\": \"2010303079104HN\", \"有效标志\": \"有效\",\"收费类别\": \"中成药\", \"操作\": \"<a class='btn btn-sm btn-default' onclick=\'onEditObject('medicine','1024');\'><i class='fa fa-pencil'><\/i> 修改<\/a><a class='btn btn-sm btn-danger' onclick=\'onDeleteObject('medicine','1024');\'><i class='fa fa-trash-o'><\/i> 删除<\/a>\",\"商品名\": \"藿香正气片\"}]");
+  
+  var table1;
+  var table2;
+  var table3;
+function loadTable1(json){
+    var obj=JSON.parse(json);
+	table1=obj;
+    var columns1 = $('#table1').columns({
+        data: obj
+    });
+}
+
+function loadTable2(json){
+    var obj=JSON.parse(json);
+	table2=obj;
+    var columns1 = $('#table2').columns({
+        data: obj
+    });	
+}
+
+function loadTable3(json){
+    var obj=JSON.parse(json);
+	table3=obj;
+    var columns1 = $('#table3').columns({
+        data: obj
+    });
+}
+	
+	$('#loadingText').fadeOut(800);
+function call(){
+var str="test!!!!!!123123123";
+app.test(str);
+}
+
+function alertTest(){
+alert(inp);
+}
+
+
+function switchPanel(name){
+$("#panel-diagnosis").hide(500);
+$("#panel-medicine").hide(500);
+$("#panel-service").hide(500);
+$("#panel-cost").hide(500);
+$("#panel-"+name).slideDown(600);
+if(name=="medicine")
+{
+$("#chargeType").val("药品");
+}else if(name=="diagnosis"){
+$("#chargeType").val("诊疗项目");
+}else if(name=="service"){
+$("#chargeType").val("服务设施");
+}
+$("#tip").html("请在下方列表继续选择一项 <strong>"+$("#chargeType").val()+"</strong> 以添加到当前创建的处方")
+}
+    
+function setRecordID(recordID){
+$("#recordID").val(recordID);
+setSubTitle("为编号为 "+recordID+" 的住院记录增加处方明细信息");
+}
+
+
+function setChargeName1(id){
+    var i=0;
+    var chargeName;
+    //$("#tip").html(JSON.stringify(table1));
+        var len=table1.length;
+        for(i=0;i<len;i++) {
+            //$("#tip").append("  /"+table1[i].ID+"/  ");
+            if (table1[i].ID == id) {
+                chargeName=table1[i].药品名称;
+                break;
+            }
+        }
+    $("#chargeName").val(chargeName);
+    $("#chargeID").val(id);
+    $("#isOfficial").val("是");
+    $("#panel-medicine").hide(900);
+}
+
+
+function setChargeName2(id){
+	var i=0;
+	var chargeName2;
+        var len=table2.length;
+    //$("#tip").html(JSON.stringify(table2));
+        for(i=0;i<len;i++) {
+           // $("#tip").append("  {/TID:"+table2[i].ID+"/id:"+id+"}   ");
+            if (table2[i].ID == id) {
+                chargeName2=table2[i].诊疗项目名称;
+				break;
+            }
+        }
+
+
+    $("#chargeName").val(chargeName2);
+    $("#chargeID").val(id);
+    $("#isOfficial").val("是");
+	$("#panel-diagnosis").hide(900);
+}
+
+
+function setChargeName3(id){
+    var i=0;
+    var len=table3.length;
+    //$("#tip").html(JSON.stringify(table3));
+	var chargeName;
+    for(i=0;i<len;i++) {
+        //$("#tip").append("  {/TID:"+table3[i].ID+"/id:"+id+"}   ");
+        if (table3[i].ID == id) {
+            chargeName=table3[i].服务设施名称;
+			break;
+        }
+    }
+    $("#chargeName").val(chargeName);
+    $("#chargeID").val(id);
+    $("#isOfficial").val("是");
+	$("#panel-service").hide(900);
+}
+
+function submitFrom(){
+        var resultObj={};
+        resultObj['mode']=$("#formMode").val();
+        resultObj['object']={};
+        resultObj['className']=$("#className").val();
+
+        var formElements=document.getElementsByName("form-element");
+        var i=0;
+        var len=formElements.length;
+        for(i=0;i<len;i++) {
+            //alert("ID:"+formElements[i].id+"\n"+formElements[i].value);
+            resultObj['object'][formElements[i].id]=formElements[i].value;
+
+        }
+        alert(JSON.stringify(resultObj));
+        app.dataReceiver(JSON.stringify(resultObj));
+	}
+
+	function saveCosChargeName(){
+    $("#chargeName").val($("#cosChargeName").val());
+    $("#isOfficial").val("否");
+        $("#chargeType").val("自定义");
+        $("#panel-cost").hide(500);
+	}
+
+$('#quantity,#unitPrice').bind('input propertychange', function() {
+    if($("#quantity").val()!=""&&$("#unitPrice").val()!="") {
+        //alert("23");
+        $("#amountOfMoney").val(parseFloat($("#quantity").val()) * parseFloat($("#unitPrice").val()));
+
+    }
+    });
+</script>
+</body>
+
+
+
+
+</html>

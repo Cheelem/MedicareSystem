@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="Stylesheet" type="text/css" href="css/app.css"/>
+<link id="style" href="css/clean.css" rel="stylesheet" media="screen">
+    <title>查看数据</title>
+</head>
+<body unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
+<section class="wrapper" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
+<h4 id="title"> 数据浏览 </h4>
+    <h3 class="text-center pull-right" id="loadingText"><i class="fa fa-refresh"></i> 数据加载中</h3>
+ <h5 id="subtitle">点击表格列头可按当前列排序查看，在右侧搜索框中输入关键字可搜索对象。</h5>
+    <section class="panel panel-default">
+ <header class="panel-heading">
+                     <a class="btn btn-sm btn-primary" onclick="newPrescription()">
+                         <i class="fa fa-plus"></i> 新增处方</a>
+     <a class="btn btn-sm btn-info" onclick="preReim();">
+         <i class="fa fa-check"></i> 预结算</a>
+
+    <span class="text-muted"><i class="fa fa-info-circle">
+ </i>  点击表格列头可按当前列排序查看，在右侧搜索框中输入关键字可搜索对象。</span>
+ </header>
+                <div class="table-responsive wrapper-sm" >
+                    <div id="table1" style="overflow-x: auto;">
+                    </div>
+                </div>
+			  <input id="className" type="text" value="" style="display:none"/>
+            </section>
+			<input id="recordID"  name="form-element" type="text" value="" style="display:none"/>
+		
+</section>
+<script src="js/app.js"></script>
+<script src="js/jquery.js"></script>
+    <script src="plugins/gotopage.js"></script>
+    <script src="plugins/ajaxpaging.js"></script>
+    <script src="js/jquery.columns.min.js"></script>
+<script>
+
+function onEditObject(id){
+app.editObject($("#className").val(),id);
+}
+
+function onDeleteObject(id){
+app.deleteObject("prescription",id);
+}
+
+  //loadTable("[{\"药品ID\": \"2010303079104HN\", \"有效标志\": \"有效\",\"收费类别\": \"中成药\", \"操作\": \"<a class='btn btn-sm btn-default' onclick=\'onEditObject('medicine','1024');\'><i class='fa fa-pencil'><\/i> 修改<\/a><a class='btn btn-sm btn-danger' onclick=\'onDeleteObject('medicine','1024');\'><i class='fa fa-trash-o'><\/i> 删除<\/a>\",\"商品名\": \"藿香正气片\"}]");
+function loadTable(json){
+    var obj=JSON.parse(json);
+    var columns1 = $('#table1').columns({
+        data: obj
+    });
+}
+
+function setRecordID(recordID){
+$("#recordID").val(recordID);
+//setSubTitle("为编号为 "+recordID+" 的住院记录增加处方明细信息");
+}
+
+function call(){
+var str="test!!!!!!123123123";
+app.test(str);
+}
+
+function alertTest(){
+alert(inp);
+}
+
+function newPrescription(){
+app.newPrescription($("#recordID").val());
+}
+
+function preReim(){
+    app.preReim($("#recordID").val());
+}
+    $('#loadingText').fadeOut(800);
+
+
+
+</script>
+</body>
+
+
+
+
+</html>

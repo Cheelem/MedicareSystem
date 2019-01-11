@@ -1,0 +1,4 @@
+.welcomePane{
+	-fx-background-image:url(hospital.jpg);
+	-fx-background-size:cover ;
+}

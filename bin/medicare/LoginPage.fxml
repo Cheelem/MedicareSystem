@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="395.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicare.MainController">
+   <children>
+      <Label alignment="CENTER" prefHeight="48.0" prefWidth="603.0" text="医疗报销管理系统" textAlignment="CENTER">
+         <font>
+            <Font name="Microsoft YaHei Light" size="28.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#9a9a9a" />
+                  <Stop color="#397bc8" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <VBox.margin>
+            <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <AnchorPane prefHeight="272.0" prefWidth="504.0" style="-fx-background-color: #EFEFEF;">
+         <children>
+            <VBox prefHeight="314.0" prefWidth="395.0" style="-fx-background-color: #EFEFEF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label id="lbTitle" fx:id="lbTitle" text="登录以继续操作" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Microsoft YaHei Light" size="18.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="20.5" radius="9.625" spread="0.36" width="20.0" />
+                     </effect>
+                  </Label>
+                  <TextField fx:id="txtUID" opacity="0.8" promptText="ID">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Microsoft YaHei" size="15.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="txtPwd" opacity="0.8" promptText="密码">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Microsoft YaHei" size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <Label text="默认测试管理账号：" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft YaHei" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="50.0" right="50.0" top="2.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow height="7.66" radius="3.33" spread="0.38" width="7.66" />
+                     </effect>
+                  </Label>
+                  <Label text="[Admin] ID: 1000 ,密码: admin" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft YaHei" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="50.0" right="50.0" top="2.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow height="7.66" radius="3.33" spread="0.38" width="7.66" />
+                     </effect>
+                  </Label>
+                  <Button id="btnLogin" fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" opacity="0.8" style="-fx-background-color: #4682b4;" text="登录" textAlignment="CENTER" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Microsoft YaHei" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <Label alignment="CENTER" prefHeight="48.0" prefWidth="603.0" text="2017-8  /  面向对象程序设计 /  东北大学 李林根 20165254 " textAlignment="CENTER">
+         <font>
+            <Font name="Microsoft YaHei" size="11.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#9a9a9a" />
+                  <Stop color="#397bc8" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+   </children>
+</VBox>

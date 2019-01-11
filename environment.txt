@@ -1,0 +1,5 @@
+#程序运行需求
+# Eclipse 版本需求: Neon.3 Release (4.6.3) 及以上
+# Java运行环境: JRE SE 1.8 及以上
+# 依赖包:
+#   引入 JavaFX 所必须的依赖包

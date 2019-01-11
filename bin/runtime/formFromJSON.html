@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="Stylesheet" type="text/css" href="css/app.css"/>
+    <link id="style" href="css/clean.css" rel="stylesheet" media="screen">
+    <title>查看数据</title>
+</head>
+<body unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
+<section class="wrapper" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
+    <h4 id="title"> 数据编辑 </h4>
+    <h3 class="text-center pull-right" id="loadingText"><i class="fa fa-refresh"></i> 数据加载中  </h3>
+    <h5 id="subtitle">点击表格列头可按当前列排序查看，在右侧搜索框中输入关键字可搜索对象。</h5>
+    <section class="panel panel-default">
+        <header class="panel-heading">
+           <i class="fa fa-info-circle"></i> 请填写下列表单以继续操作。
+        </header>
+		<div class="wrapper-lg">
+        <div id="form-area" style="display:none;">
+
+        </div>
+		
+		<a class="btn btn-lg btn-primary" id="btnFormSubmit" onclick="submitFrom()"><i class="fa fa-save"></i> 保存</a>
+		</div>
+		<input id="formMode" type="text" value="create" style="display:none"/>
+        <input id="className" type="text" value="" style="display:none"/>
+    </section>
+
+</section>
+<script src="js/app.js"></script>
+<script src="js/jquery.js"></script>
+<script src="plugins/gotopage.js"></script>
+<script src="plugins/ajaxpaging.js"></script>
+<script src="js/jquery.columns.min.js"></script>
+<script>
+
+//loadForm("{\"elements\":[{\"placeholder\":\"\",\"label\":\"gender\",\"id\":\"gender_new\",\"type\":\"text\",\"value\":\"123123123123\",\"required\":1},{\"placeholder\":\"\",\"label\":\"citizenIDNo\",\"id\":\"citizenIDNo_new\",\"type\":\"text\",\"value\":\"\",\"required\":1},{\"placeholder\":\"\",\"label\":\"name\",\"id\":\"name_new\",\"type\":\"text\",\"value\":\"\",\"required\":1}]}");
+   function loadForm(json){
+	json=JSON.parse(json);
+        var formHTML="";
+        var i=0;
+        var j=0;
+        for(i=0;json["elements"][i]!=null;i++){
+            if(i%2==0){
+                formHTML+="<div class='row form-group pull-in clearfix'><div class='col-sm-6 col-md-6 col-lg-6'>";
+                formHTML+="<label>"+json["elements"][i]['label']+"</label>";
+                switch (json["elements"][i]['type']){
+                    case "text":
+
+                        formHTML+="<input name='form-element' type='text' class='form-control m-t'";
+                        if(json["elements"][i]['required']==1){
+                            formHTML+=" data-required='true'"
+                        }
+                       
+                            formHTML+=" value='"+json["elements"][i]['value']+"'";
+                        
+                            formHTML+=" placeholder='"+json["elements"][i]['placeholder']+"'";
+                        
+                            formHTML+=" id='"+json["elements"][i]['id']+"'";
+                        
+                        formHTML+="/>";
+                        break;
+                    case "combox":
+                        formHTML+="<select name='form-element' data-required='true' class='form-control m-t'";
+                        if(json["elements"][i]['id']!=""){
+                            formHTML+=" id='"+json["elements"][i]['id']+"'";
+                        }
+                        formHTML+=">";
+                        for(j=0;json["elements"][i]['options'][j]!=null;j++) {
+                            formHTML+="<option value='"
+                                +json["elements"][i]['options'][j]['value']
+                                +"'>"
+                                +json["elements"][i]['options'][j]['text']
+                                +"</option>";
+                        }
+						if(json["elements"][i]['value']!=""){
+                            formHTML+=" value='"+json["elements"][i]['value']+"'";
+                        }
+                        formHTML+="</select>";
+
+                        break;
+                }
+                formHTML+="</div>";
+                if(json["elements"][i+1]==null){
+                    formHTML+="</div>";
+                    break;
+                }
+            }else{
+                formHTML+="<div class='col-sm-6 col-md-6 col-lg-6'>";
+                formHTML+="<label>"+json["elements"][i]['label']+"</label>";
+                switch (json["elements"][i]['type']){
+                    case "text":
+                        formHTML+="<input name='form-element' type='text' class='form-control m-t'";
+                        if(json["elements"][i]['required']==1){
+                            formHTML+=" data-required='true'"
+                        }
+                        if(json["elements"][i]['value']!=null){
+                            formHTML+=" value='"+json["elements"][i]['value']+"'";
+                        }
+                        if(json["elements"][i]['placeholder']!=null){
+                            formHTML+=" placeholder='"+json["elements"][i]['placeholder']+"'";
+                        }
+                        if(json["elements"][i]['id']!=null){
+                            formHTML+=" id='"+json["elements"][i]['id']+"'";
+                        }
+                        formHTML+="/>";
+
+                        break;
+                    case "combox":
+                        formHTML+="<select name='form-element' data-required='true' class='form-control m-t'";
+                        if(json["elements"][i]['id']!=null){
+                            formHTML+=" id='"+json["elements"][i]['id']+"'";
+                        }
+                        formHTML+=">";
+                        for(j=0;json["elements"][i]['options'][j]!=null;j++) {
+                            formHTML+="<option value='"
+                                +json["elements"][i]['options'][j]['value']
+                                +"'>"
+                                +json["elements"][i]['options'][j]['text']
+                                +"</option>";
+                        }
+                        formHTML+="</select>";
+
+                        break;
+
+                }
+                formHTML+="</div></div>";
+				
+            }
+        }
+        $("#form-area").append(formHTML);
+		$("#form-area").slideDown(900);
+		$('#loadingText').fadeOut(800);
+    }
+
+
+    function alertTest(inp){
+        alert(inp);
+    }
+
+    function setFormMode(inp){
+	$("#formMode").val(inp);
+	if(inp=="create"){
+	$("btnFormSubmit").html("<i class='fa fa-edit'></i> 新建");
+	}else if(inp=="edit"){
+	$("btnFormSubmit").html("<i class='fa fa-save'></i> 保存更改");
+	}
+	}
+	
+	function submitFrom(){
+        var resultObj={};
+        resultObj['mode']=$("#formMode").val();
+        resultObj['object']={};
+        resultObj['className']=$("#className").val();
+
+        var formElements=document.getElementsByName("form-element");
+        var i=0;
+        var len=formElements.length;
+        for(i=0;i<len;i++) {
+            //alert("ID:"+formElements[i].id+"\n"+formElements[i].value);
+            resultObj['object'][formElements[i].id]=formElements[i].value;
+
+        }
+        alert(JSON.stringify(resultObj));
+        app.dataReceiver(JSON.stringify(resultObj));
+	}
+</script>
+</body>
+
+
+
+
+</html>

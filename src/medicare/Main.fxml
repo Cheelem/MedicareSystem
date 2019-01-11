@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="639.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicare.MainController">
+   <children>
+      <Label alignment="CENTER" text="您关闭了所有窗口，请在左侧选择更多操作。" textAlignment="CENTER" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="300.0">
+         <font>
+            <Font name="Microsoft YaHei UI Light" size="31.0" />
+         </font>
+         <effect>
+            <DropShadow color="#4f4f4f" spread="0.24" />
+         </effect>
+      </Label>
+      <ImageView fitHeight="566.0" fitWidth="1030.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-485.0">
+         <image>
+            <Image url="@../../bin/medicare/images/hospital.jpg" />
+         </image>
+         <effect>
+            <GaussianBlur radius="12.0" />
+         </effect>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <Label layoutX="8.0" layoutY="25.0" opacity="0.8" prefHeight="55.0" prefWidth="1023.0" style="-fx-background-color: #555555;" text="医疗报销中心管理系统" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <font>
+            <Font name="Microsoft YaHei UI Light" size="25.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="WHITE" />
+                  <Stop color="#bddefd" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+         <effect>
+            <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="40.0" surfaceScale="0.33">
+               <bumpInput>
+                  <Shadow blurType="GAUSSIAN" height="18.59" radius="14.155000000000001" width="40.03" />
+               </bumpInput>
+               <light>
+                  <Light.Distant azimuth="164.3" elevation="51.28" />
+               </light>
+            </Lighting>
+         </effect>
+      </Label>
+      <AnchorPane id="main" layoutX="9.0" layoutY="62.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+         <children>
+            <TabPane fx:id="tabs" layoutY="7.0" prefHeight="597.0" prefWidth="843.0" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab fx:id="tabWelcome" text="欢迎页">
+                     <content>
+                        <AnchorPane fx:id="paneWelcome" styleClass="welcomePane" stylesheets="@general.css">
+                           <children>
+                              <Label layoutY="39.0" opacity="0.78" prefHeight="72.0" prefWidth="557.0" style="-fx-background-color: #555555;" text="欢迎使用医疗报销中心管理系统" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.0">
+                                 <font>
+                                    <Font name="Microsoft YaHei UI Light" size="33.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="14.0" text="请在左侧导航栏选择您需要进行的操作。" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="GAUSSIAN" height="24.71" radius="8.3325" spread="0.4" width="10.62" />
+                                 </effect>
+                              </Label>
+                           </children>
+                           <effect>
+                              <InnerShadow choke="0.1" height="5.48" radius="64.62" width="255.0" />
+                           </effect>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+      <Accordion layoutY="62.0" maxWidth="200.0" minWidth="200.0" prefHeight="560.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0">
+        <panes>
+          <TitledPane prefHeight="358.0" prefWidth="172.0" styleClass="scroll-pane" text="中心报销">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <MenuButton layoutX="20.0" layoutY="235.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="btn-default" text="就诊资料">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#loadRecordQuery" text="查询" />
+                              <MenuItem mnemonicParsing="false" onAction="#loadRecordInsert" text="录入住院记录信息" />
+                           </items>
+                        </MenuButton>
+                        <MenuButton layoutX="20.0" layoutY="266.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="btn-default" text="定点医疗机构">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#loadInstitutionQuery" text="查询" />
+                              <MenuItem mnemonicParsing="false" onAction="#loadInstitutionInsert" text="录入定点医疗机构" />
+                           </items>
+                        </MenuButton>
+                        <Button layoutX="28.0" layoutY="50.0" mnemonicParsing="false" onAction="#reimPersons" prefHeight="33.0" prefWidth="141.0" styleClass="btn-default" text="基本流程报销" />
+                        <Label layoutX="14.0" layoutY="14.0" text="报销操作" />
+                        <Label layoutX="12.0" layoutY="163.0" text="辅助功能" />
+                        <MenuButton layoutX="20.0" layoutY="204.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="157.0" styleClass="btn-default" text="人员统合">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#loadPersonQuery" text="查询" />
+                              <MenuItem mnemonicParsing="false" onAction="#loadPersonInsert" text="录入人员信息" />
+                           </items>
+                        </MenuButton>
+                        <Button layoutX="28.0" layoutY="102.0" mnemonicParsing="false" onAction="#reimAllRecords" prefHeight="33.0" prefWidth="141.0" styleClass="btn-default" text="通过诊疗记录报销" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane text="信息维护">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minHeight="200.0" pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <AnchorPane>
+                                 <children>
+                                    <GridPane prefHeight="104.0" prefWidth="145.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                         <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="35.0" minHeight="35" prefHeight="35" valignment="CENTER" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="35" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="35.0" prefWidth="162.0" styleClass="alert-success" text="药品" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" onAction="#loadMedicineQuery" prefHeight="33.0" prefWidth="200.0" styleClass="btn-default" text="查询/编辑药品" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" onAction="#loadMedicineInsert" prefHeight="33.0" prefWidth="188.0" styleClass="btn-default" text="录入药品项目" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                   
+                                             <GridPane prefHeight="104.0" prefWidth="145.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="35.0" minHeight="35" prefHeight="35" valignment="CENTER" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="35" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="35.0" prefWidth="162.0" styleClass="alert-danger" text="诊疗项目" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" onAction="#loadDiagnosisQuery" prefHeight="33.0" prefWidth="200.0" styleClass="btn-default" text="查询/编辑诊疗项目" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" onAction="#loadDiagnosisInsert" prefHeight="33.0" prefWidth="188.0" styleClass="btn-default" text="新增诊疗项目" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                    
+                                    <GridPane prefHeight="104.0" prefWidth="145.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="240.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="35.0" minHeight="35" prefHeight="35" valignment="CENTER" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="35" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="35.0" prefWidth="162.0" styleClass="alert-warning" text="服务设施" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" onAction="#loadServiceQuery" prefHeight="33.0" prefWidth="200.0" styleClass="btn-default" text="查询/编辑服务设施" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" onAction="#loadServiceInsert" prefHeight="33.0" prefWidth="188.0" styleClass="btn-default" text="新增服务设施" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                    
+                                  
+                                    
+                           
+                                    
+                                    
+                                     <GridPane prefHeight="104.0" prefWidth="145.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="360.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="35.0" minHeight="35" prefHeight="35" valignment="CENTER" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="35" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="35.0" prefWidth="162.0" styleClass="alert-info" text="人员信息" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" onAction="#loadPersonQuery" prefHeight="33.0" prefWidth="200.0" styleClass="btn-default" text="查询/编辑在录人员" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" onAction="#loadPersonInsert" prefHeight="33.0" prefWidth="188.0" styleClass="btn-default" text="录入人员" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                    
+                                      <GridPane prefHeight="104.0" prefWidth="145.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="480.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="35.0" minHeight="35" prefHeight="35" valignment="CENTER" vgrow="ALWAYS" />
+                                          <RowConstraints maxHeight="35" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="35.0" prefWidth="162.0" styleClass="alert-primary" text="住院记录" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" onAction="#loadRecordQuery" prefHeight="33.0" prefWidth="200.0" styleClass="btn-default" text="浏览/查询所有住院记录" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" onAction="#loadRecordInsert" prefHeight="33.0" prefWidth="188.0" styleClass="btn-default" text="住院记录" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                    
+                                    
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                           <effect>
+                              <DropShadow blurType="GAUSSIAN" height="37.31" radius="14.0775" />
+                           </effect>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+          </TitledPane>
+          <TitledPane text="系统配置">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="31.0" layoutY="42.0" mnemonicParsing="false" onAction="#loadStartingLineQuery" prefHeight="31.0" prefWidth="134.0" styleClass="btn-default" text="起付标准" />
+                        <Button layoutX="31.0" layoutY="89.0" mnemonicParsing="false" onAction="#loadUpperLimitQuery" prefHeight="33.0" prefWidth="138.0" styleClass="btn-default" text="封顶线" />
+                        <Button layoutX="31.0" layoutY="134.0" mnemonicParsing="false" onAction="#loadIndivRatioQuery" styleClass="btn-default" text="个人分段自费比例" />
+                        <Label layoutX="16.0" layoutY="14.0" text="医疗参数维护" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="通用">
+            <items>
+              <MenuItem mnemonicParsing="false" text="退出" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="视图">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#closeThisTab" text="关闭当前选项卡" />
+              
+               <MenuItem mnemonicParsing="false" onAction="#closeOthersTabs" text="关闭当前以外的选项卡" />
+                <MenuItem mnemonicParsing="false" onAction="#closeAllTabs" text="关闭所有选项卡" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="关于">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="Stylesheet" type="text/css" href="css/app.css"/>
+    <link id="style" href="css/clean.css" rel="stylesheet" media="screen">
+    <title>查看数据</title>
+</head>
+<body unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
+<section class="wrapper" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
+    <h4> 数据浏览 </h4>
+    <h3 class="text-center pull-right" id="loadingText"><i class="fa fa-refresh"></i> 数据加载中  </h3>
+    <h5>点击表格列头可按当前列排序查看，在右侧搜索框中输入关键字可搜索对象。</h5>
+    <section class="panel panel-default">
+        <header class="panel-heading">
+            <button class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown"><i class="fa fa-level-down"></i>导出到EXCEL文件... <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#" onclick="submitexcel('xls');">导出到xls格式</a></li>
+                <li class="divider"></li>
+            </ul>
+        </header>
+        <div class="wrapper-sm" id="form-area">
+
+
+
+        </div>
+    </section>
+
+</section>
+<script src="js/app.js"></script>
+<script src="js/jquery.js"></script>
+<script src="plugins/gotopage.js"></script>
+<script src="plugins/ajaxpaging.js"></script>
+<script src="js/jquery.columns.min.js"></script>
+<script>
+
+    loadForm({
+        elements:[
+            {type:"text",value:"test1",required:1,placeholder:"pppp",label:""},
+            {type:"text",value:"test1",required:1,placeholder:"pppp",label:""},
+            {type:"text",value:"test1",required:1,placeholder:"pppp",label:""}
+        ]
+    });
+    function loadForm(json){
+        var formHTML="";
+        var i=0;
+        for(i=0;json["elements"][i]!=null;i++){
+            if(i%2==0){
+
+                formHTML+="<div class='row'><div class='col-sm-6 col-md-6 col-lg-6'>";
+                formHTML+="<label>"+json["elements"][i]['label']+"</label>";
+                switch (json["elements"][i]['type']){
+                    case "text":
+                        formHTML+="<input name='form-element' type='text' class='form-control";
+                        if(json["elements"][i]['required']==1){
+                            formHTML+" required='required'"
+                        }
+                        if(json["elements"][i]['value']!=null){
+                            formHTML+" value='"+json["elements"][i]['value']+"'";
+                        }
+                        if(json["elements"][i]['placeholder']!=null){
+                            formHTML+" placeholder='"+json["elements"][i]['placeholder']+"'";
+                        }
+                        formHTML+="/>";
+                        break;
+
+                }
+                formHTML+="</div>";
+            }else{
+                formHTML+="<div class='col-sm-6 col-md-6 col-lg-6'>";
+                formHTML+="<label>"+json["elements"][i]['label']+"</label>";
+                switch (json["elements"][i]['type']){
+                    case "text":
+                        formHTML+="<input name='form-element' type='text' class='form-control";
+                        if(json["elements"][i]['required']==1){
+                            formHTML+" required='required'"
+                        }
+                        if(json["elements"][i]['value']!=null){
+                            formHTML+" value='"+json["elements"][i]['value']+"'";
+                        }
+                        if(json["elements"][i]['placeholder']!=null){
+                            formHTML+" placeholder='"+json["elements"][i]['placeholder']+"'";
+                        }
+                        formHTML+="/>";
+                        break;
+
+                }
+                formHTML+="</div></div>";
+            }
+        }
+        $("#form-area").append(formHTML);
+    }
+
+
+    function call(){
+        var str="test!!!!!!123123123";
+        app.test(str);
+    }
+
+
+    function alertTest(){
+        alert(inp);
+    }
+
+
+    alert("123123123~~~");
+    $('#loadingText').fadeOut(800);
+</script>
+</body>
+
+
+
+
+</html>
